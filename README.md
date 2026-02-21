@@ -1,6 +1,6 @@
 # Domain Q&A Chatbot – Introductory Data Analytics
 
-**Repository:** https://github.com/g7yue/lite-chatbot  
+**Repository:** https://github.com/g7yue/domain-lite-chatbot  
 **Live URL:** (add your GCP-deployed URL after deployment)
 
 Build a domain-restricted web chatbot that answers questions strictly within Introductory Data Analytics.
