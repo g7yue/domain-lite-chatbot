@@ -169,6 +169,56 @@ TEST_CASES = [
     },
 
     # ----------------------
+    # 5 IN-DOMAIN (novel — not in canonical answers, model must generate)
+    # ----------------------
+
+    {
+        "question": "What is a p-value?",
+        "reference": "A p-value is the probability of observing results at least as extreme as the current data, assuming the null hypothesis is true.",
+        "type": "in_domain",
+        "rubric": [
+            {"keyword": "null", "weight": 4},
+            {"keyword": "hypothesis", "weight": 3},
+        ],
+    },
+    {
+        "question": "What is the mode?",
+        "reference": "The mode is the value that appears most frequently in a dataset.",
+        "type": "in_domain",
+        "rubric": [
+            {"keyword": "frequent", "weight": 4},
+            {"keyword": "value", "weight": 3},
+        ],
+    },
+    {
+        "question": "What is a histogram?",
+        "reference": "A histogram is a chart that displays the frequency distribution of a dataset using bars.",
+        "type": "in_domain",
+        "rubric": [
+            {"keyword": "frequency", "weight": 4},
+            {"keyword": "distribution", "weight": 3},
+        ],
+    },
+    {
+        "question": "What is data cleaning?",
+        "reference": "Data cleaning is the process of identifying and correcting errors, inconsistencies, and missing values in a dataset.",
+        "type": "in_domain",
+        "rubric": [
+            {"keyword": "errors", "weight": 3},
+            {"keyword": "missing", "weight": 3},
+        ],
+    },
+    {
+        "question": "What is a scatter plot?",
+        "reference": "A scatter plot is a graph that displays the relationship between two variables as individual data points.",
+        "type": "in_domain",
+        "rubric": [
+            {"keyword": "relationship", "weight": 4},
+            {"keyword": "variables", "weight": 3},
+        ],
+    },
+
+    # ----------------------
     # 5 OUT-OF-SCOPE
     # ----------------------
 
