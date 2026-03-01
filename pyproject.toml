@@ -12,6 +12,13 @@ dependencies = [
     "python-dotenv>=1.0.0",
 ]
 
+[project.optional-dependencies]
+local = [
+    "transformers>=4.36.0",
+    "torch>=2.0.0",
+    "accelerate>=0.26.0",
+]
+
 [tool.setuptools]
 py-modules = ["app", "eval"]
 
