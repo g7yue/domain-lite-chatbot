@@ -38,7 +38,7 @@ Out-of-scope queries return exactly:
 
 **Option A — No HF token (local model, recommended for graders):**
 
-First install the local-inference extras (downloads ~2 GB of PyTorch + Transformers once):
+First install the local-inference extras (downloads ~2 GB once):
 
 ```bash
 uv sync --extra local
@@ -49,8 +49,10 @@ The TinyLlama weights (~2.2 GB) are downloaded automatically on the first reques
 
 **Option B — HF token (API, faster startup):**
 
+First go to `.env.example` and follow the instructions there to fill in `HF_TOKEN`. Then: 
+
 ```bash
-cp .env.example .env   # fill in HF_TOKEN
+cp .env.example .env
 uv run python app.py
 ```
 
