@@ -159,6 +159,18 @@ def is_food_safety(text: str) -> bool:
     return bool(FOOD_SAFETY_REGEX.search(text))
 
 
+IN_SCOPE_REGEX = re.compile(
+    r"\bcat(s|'s)?\b|feline|kitten|kitty|tabby|meow|purr|knead|claw|paw|whisker|"
+    r"fur ball|hairball|litter box|scratching post|slow blink|headbutt|chirp|"
+    r"groom(ing)?|hunt(ing)?|prey|hiss(ing)?|yowl|catnip|nap(ping)?|zoomies",
+    re.IGNORECASE,
+)
+
+
+def is_in_scope(text: str) -> bool:
+    return bool(IN_SCOPE_REGEX.search(text))
+
+
 GREETING_PATTERN = re.compile(
     r"^(hi|hello|hey|howdy|yo|greetings?|good\s*(morning|afternoon|evening)|"
     r"how\s*are\s*(you|u)\??\s*$|what'?s\s*up\??\s*$|hi\s+there\s*$)",
@@ -240,6 +252,15 @@ def generate_response(question: str) -> str:
 
     if is_greeting(question):
         out = "Meow~ I'm your cat behavior expert! Ask me why cats knead, purr, scratch, slow blink, headbutt, or do anything else curious!"
+        if len(_response_cache) < _CACHE_MAX:
+            _response_cache[key] = out
+        return out
+
+    # Allowlist gate: if the question contains no cat-related keywords, reject it
+    # before calling the model. TinyLlama is too small to reliably follow the
+    # system-prompt domain restriction on its own (e.g. "what is a tree").
+    if not is_in_scope(question):
+        out = "This question is outside of my cat behavior domain."
         if len(_response_cache) < _CACHE_MAX:
             _response_cache[key] = out
         return out
