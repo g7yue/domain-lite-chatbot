@@ -20,14 +20,14 @@ The chatbot answers questions about cat behavior including:
 The chatbot does **not** answer questions outside this scope.
 It will refuse questions involving:
 
+* Dog training or other non-cat topics
+* Cooking recipes
+* Medical advice
 * Machine learning or AI models
 * Stocks, crypto, or trading
-* Cooking recipes
 * Legal or compliance topics
-* Medical advice
-* Dog training or other non-cat topics
 * Software engineering or backend system design
-* Statistics or data analytics
+* Statistics or data analytics topics
 
 Out-of-scope queries return exactly:
 
