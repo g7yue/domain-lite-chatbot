@@ -118,7 +118,9 @@ Beyond the core project requirements, the following robustness improvements were
 
 * **Canonical answer fast-path** — 15 common cat behavior questions are mapped to pre-defined, expert-quality answers. These bypass the model entirely for both speed and consistency.
 
-* **Multi-layer input pipeline** — Each message passes through six checks before reaching the model: (1) cache lookup, (2) canonical answer match, (3) safety keyword filter, (4) out-of-scope regex filter, (5) food safety filter, (6) greeting detection. The model is only called when all six checks pass.
+* **Multi-layer input pipeline** — Each message passes through seven checks before reaching the model: (1) cache lookup, (2) canonical answer match, (3) safety keyword filter, (4) out-of-scope regex filter, (5) food safety filter, (6) greeting detection, (7) in-scope allowlist. The model is only called when all seven checks pass.
+
+* **In-scope allowlist gate** — TinyLlama (1.1B parameters) is too small to reliably follow the system prompt's domain restriction for arbitrary off-topic questions (e.g. "what is a tree"). After all other pre-model checks pass, a regex allowlist verifies the question contains at least one cat-related keyword (`cat`, `feline`, `kitten`, `purr`, `knead`, `chirp`, etc.). Questions with no cat-related terms are rejected with the standard refusal phrase before any model call is made.
 
 * **Food safety disclaimer** — TinyLlama (1.1B parameters) is too small to be reliably accurate on pet nutrition facts. Questions about what cats can or cannot eat are intercepted before reaching the model and receive a fixed response directing users to consult their veterinarian. This prevents the model from producing plausible-sounding but factually incorrect food safety advice.
 
