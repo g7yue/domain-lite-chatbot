@@ -124,7 +124,7 @@ Beyond the core project requirements, the following robustness improvements were
 
 * **Food safety disclaimer** — TinyLlama (1.1B parameters) is too small to be reliably accurate on pet nutrition facts. Questions about what cats can or cannot eat are intercepted before reaching the model and receive a fixed response directing users to consult their veterinarian. This prevents the model from producing plausible-sounding but factually incorrect food safety advice.
 
-* **Dual inference mode** — The app auto-detects whether an `HF_TOKEN` is present. When the token is set (Cloud Run), it uses the HuggingFace Inference API for fast, lightweight responses. When no token is present (local clone), it loads TinyLlama via the `transformers` library with no token required. Local deps are declared as an optional group (`uv sync --extra local`) so the Cloud Run container stays small.
+* **Dual inference mode** — The app auto-detects whether an `HF_TOKEN` is present. When the token is set (Cloud Run), it uses the HuggingFace Inference API for fast, lightweight responses. When no token is present (local clone), it loads TinyLlama via the `transformers` library with no token required. Local deps are declared as an optional group (`uv sync --extra local`) so that the Cloud Run container stays small.
 
 * **Graceful fallback** — If the model call fails for any reason (API timeout, rate limit, local OOM), the user receives an informative fallback message instead of a crash or empty response.
 
